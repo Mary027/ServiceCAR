@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Заказ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-primary {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Создать заказ</h1>
+
+    <h2>Добавить машину</h2>
+    <form method="post" action="{% url 'data_base' %}">
+        {% csrf_token %}
+        {{ car_form.as_p }}
+        <input type="hidden" name="car_form" value="true">
+        <button type="submit">Добавить машину</button>
+    </form>
+
+    <h2>Добавить заказ</h2>
+    <form method="post" action="{% url 'data_base' %}">
+        {% csrf_token %}
+        {{ service_record_form.as_p }}
+        <input type="hidden" name="service_record_form" value="true">
+        <button type="submit">Добавить заказ</button>
+    </form>
+    <a href="{% url 'home' %}" class="btn btn-primary">На главную страницу</a>
+</body>
+</html>
